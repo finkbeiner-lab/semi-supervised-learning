@@ -25,8 +25,8 @@ from torch.utils.data import Dataset, DataLoader
 # importing the DINO projection head implementation from Lightly
 from lightly.models.modules.heads import DINOProjectionHead
 
-# importing histomicstok for pathology specific augmentation
-from histomicstk.preprocessing.augmentation import rgb_perturb_stain_concentration
+# # importing histomicstok for pathology specific augmentation
+# from histomicstk.preprocessing.augmentation import rgb_perturb_stain_concentration
 
 # importing other dependencies
 import pandas as pd
@@ -79,7 +79,7 @@ class RGBPerturbStainConcentrationTransform():
         img_np = img.permute(1, 2, 0).numpy()
 
         # Apply the HistomicsTK stain concentration perturbation
-        img_np = rgb_perturb_stain_concentration(img_np, **self.kwargs)
+        # img_np = rgb_perturb_stain_concentration(img_np, **self.kwargs)
 
         # Convert back to PIL Image, then to Tensor if necessary
         img_tensor = torch.Tensor(img_np).permute(2, 0, 1)

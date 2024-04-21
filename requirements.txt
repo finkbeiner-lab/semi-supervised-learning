@@ -1,0 +1,4 @@
+wandb
+lightly
+pytorch-lightning==2.0.1
+tdqm
