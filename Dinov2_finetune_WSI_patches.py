@@ -111,7 +111,7 @@ class WSIPathSSLDataset(Dataset):
     def __init__(self, csv_file):
         self.img_files = pd.read_csv(csv_file)
         self.length = len(self.img_files)
-        self.resize_transform = transforms.Resize((256, 256), antialias=True)
+        self.resize_transform = transforms.Resize((224, 224), antialias=True)
         #518 x518
 
     def _random_transform(self, image):
