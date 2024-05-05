@@ -7,9 +7,21 @@ from pathlib import Path
 import copy
 from tqdm import tqdm
 import multiprocessing
+from skimage.io import imread
+import pdb
+
 
 # importing torch related dependencies
 import torch
+if not torch.backends.mps.is_available():
+    if not torch.backends.mps.is_built():
+        print("MPS not available because the current PyTorch install was not "
+              "built with MPS enabled.")
+    else:
+        print("MPS not available because the current MacOS version is not 12.3+ "
+              "and/or you do not have an MPS-enabled device on this machine.")
+        
+torch.device("mps")
 import torch.nn as nn
 import torch.distributed as dist
 from torch import optim
@@ -30,7 +42,6 @@ from lightly.models.modules.heads import DINOProjectionHead
 
 # importing other dependencies
 import pandas as pd
-import zarr
 import numpy as np
 
 # importing logging dependencies
@@ -87,7 +98,7 @@ class RGBPerturbStainConcentrationTransform():
         return img_tensor
 
 
-def collate_zarr_files(directory: str):
+def collate_image_files(directory: str):
     # List to store the paths of .tif files
     files = []
     # Walk through directory recursively
@@ -96,34 +107,12 @@ def collate_zarr_files(directory: str):
             files.append(dir)
     return np.array(files)
 
-
 class WSIPathSSLDataset(Dataset):
-    def __init__(self, base_directory):
-        self.zarr_files = self._get_zarr_files(base_directory)
-        self.length, self.intervals = self._get_dataset_len()
-        self.zf = np.repeat(self.zarr_files, self.intervals)
-        self.inner_idx = np.hstack([np.arange(x) for x in self.intervals])
+    def __init__(self, csv_file):
+        self.img_files = pd.read_csv(csv_file)
+        self.length = len(self.img_files)
         self.resize_transform = transforms.Resize((224, 224), antialias=True)
-
-    def _get_dataset_len(self):
-        total_len = []
-        print('Collating all files...')
-        zarr_files = []
-        for f in tqdm(self.zarr_files):
-            try:
-                root = zarr.open(f, 'r')
-                num_tiles = np.array(root['arr_1']).shape[0]
-                total_len.append(num_tiles)
-                zarr_files.append(f)
-            except:
-                print(f'error reading in {f}')
-        self.zarr_files = np.array(zarr_files)
-        total_len = np.array(total_len)
-        dataset_len = np.sum(total_len)
-        return int(dataset_len), total_len
-    
-    def _get_zarr_files(self, base_dir):
-        return collate_zarr_files(base_dir)
+        #518 x518
 
     def _random_transform(self, image):
         # Define a list of PyTorch transform functions
@@ -131,7 +120,8 @@ class WSIPathSSLDataset(Dataset):
             transforms.RandomHorizontalFlip(p=1),
             transforms.RandomRotation([-90, 90]),
             transforms.RandomVerticalFlip(p=1),
-            RGBPerturbStainConcentrationTransform(sigma1=0.7, sigma2=0.7)
+            # Assuming RGBPerturbStainConcentrationTransform is a custom transform
+            # RGBPerturbStainConcentrationTransform(sigma1=0.7, sigma2=0.7)
         ]
         
         # Apply the transform function to the image
@@ -147,17 +137,87 @@ class WSIPathSSLDataset(Dataset):
         return transformed_image
 
     def __getitem__(self, idx):
-        zf = self.zf[idx]
-        ii = self.inner_idx[idx]
-        root = zarr.open(zf, 'r')
-        im = torch.Tensor(np.array(root['arr_0'][ii])).permute(2, 0, 1)
+
+        image_path = self.img_files.iloc[idx, 0]  # Assuming the first column contains image file paths
+        image_path = image_path.split('/gladstone/finkbeiner/steve')
+        image_path = '/Volumes/Finkbeiner-Steve' + image_path[1]
+        im = imread(image_path)
+     
+        im = torch.from_numpy(im)
+        im = im.permute(2, 0, 1) # bring channels first
+        
+        # Assuming 'root' and 'ii' are not defined here
+        # im = torch.Tensor(np.array(root['arr_0'][ii])).permute(2, 0, 1)
+
         t_im = self._random_transform(im)
         im = self.resize_transform(im)/255
         t_im = self.resize_transform(t_im)/255
         return im, t_im
 
     def __len__(self):
-        return int(self.length)
+        return self.length
+
+# class WSIPathSSLDataset(Dataset):
+#     def __init__(self, base_directory):
+#         self.zarr_files = self._get_zarr_files(base_directory)
+#         self.length, self.intervals = self._get_dataset_len()
+#         self.zf = np.repeat(self.zarr_files, self.intervals)
+#         self.inner_idx = np.hstack([np.arange(x) for x in self.intervals])
+#         self.resize_transform = transforms.Resize((224, 224), antialias=True)
+
+#     def _get_dataset_len(self):
+#         total_len = []
+#         print('Collating all files...')
+#         zarr_files = []
+#         for f in tqdm(self.zarr_files):
+#             try:
+#                 root = zarr.open(f, 'r')
+#                 num_tiles = np.array(root['arr_1']).shape[0]
+#                 total_len.append(num_tiles)
+#                 zarr_files.append(f)
+#             except:
+#                 print(f'error reading in {f}')
+#         self.zarr_files = np.array(zarr_files)
+#         total_len = np.array(total_len)
+#         dataset_len = np.sum(total_len)
+#         return int(dataset_len), total_len
+    
+#     def _get_zarr_files(self, base_dir):
+#         return collate_zarr_files(base_dir)
+
+#     def _random_transform(self, image):
+#         # Define a list of PyTorch transform functions
+#         transform_functions = [
+#             transforms.RandomHorizontalFlip(p=1),
+#             transforms.RandomRotation([-90, 90]),
+#             transforms.RandomVerticalFlip(p=1),
+#             RGBPerturbStainConcentrationTransform(sigma1=0.7, sigma2=0.7)
+#         ]
+        
+#         # Apply the transform function to the image
+#         n_transforms = random.choice([1, 2, 3])
+#         for _ in range(n_transforms):
+#             try:
+#                 transform_function = random.choice(transform_functions)
+#                 image = transform_function(image)
+#             except:
+#                 pass
+#         # Return the transformed images as a tensor
+#         transformed_image = image
+#         return transformed_image
+
+#     def __getitem__(self, idx):
+#         zf = self.zf[idx]
+#         ii = self.inner_idx[idx]
+#         root = zarr.open(zf, 'r')
+#         im = torch.Tensor(np.array(root['arr_0'][ii])).permute(2, 0, 1)
+#         t_im = self._random_transform(im)
+#         im = self.resize_transform(im)/255
+#         t_im = self.resize_transform(t_im)/255
+#         return im, t_im
+
+#     def __len__(self):
+#         return int(self.length)
 
 
 ###########
@@ -303,14 +363,14 @@ class DINOViT(pl.LightningModule):
                  lr=1e-3,
                  max_epoch_number=500,
                  num_register_tokens=4,
-                 num_patches=256,
+                 num_patches=256, #1369   - [518/14 = 37 * 37 =1369]
                  proj_dim=2048):
         super().__init__()
         self.lr = lr
         self.max_epoch_number = max_epoch_number
         self.pos_embed = nn.Parameter(torch.zeros(1, num_patches, 768))
         assert num_register_tokens >= 0
-        dinov2_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitb14_reg').cuda()
+        dinov2_model = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitb14_reg').to('mps')
         self.cls_token = dinov2_model.cls_token
         self.register_tokens = dinov2_model.register_tokens
         self.patch_embed = dinov2_model.patch_embed
@@ -464,10 +524,10 @@ def main():
     parser = ArgumentParser(
         description=desc, formatter_class=ArgumentDefaultsHelpFormatter
     )
-    parser.add_argument("--gpu_num", type=int, default=3, help="GPU number to use.")
+    parser.add_argument("--gpu_num", type=int, default=-1, help="GPU number to use.")
     parser.add_argument("--name", type=str, help="Name of experiment for logger.")
     parser.add_argument("--logs", type=Path, help="Path to model logs and checkpoints.")
-    parser.add_argument("--batch_size", type=int, default=64, help="Batch Size (note: actual batch is batch_size * num_sc_ims.")
+    parser.add_argument("--batch_size", type=int, default=64, help="Batch Size")
     parser = DINOViT.add_model_specific_args(parser)
     args = parser.parse_args()
     dict_args = vars(args)
@@ -477,12 +537,14 @@ def main():
     # data
     # ------------
     print("Generating Training and Validation DataSets...")
-    train_zarr_path = '/scratch/pgrosjean/path_ssl/prostate_dataset/train/'
-    val_zarr_path = '/scratch/pgrosjean/path_ssl/prostate_dataset/validation/'
-    train_dataset = WSIPathSSLDataset(train_zarr_path)
-    val_dataset = WSIPathSSLDataset(val_zarr_path)
-    train_dl = DataLoader(train_dataset, shuffle=True, batch_size=args.batch_size, num_workers=12)
-    val_dl = DataLoader(val_dataset, shuffle=False, batch_size=args.batch_size, num_workers=0)
+    train_img_path = '/Volumes/Finkbeiner-Steve/work/data/npsad_data/vivek/Datasets/amyb_wsi/Parker-SemiSupervised/train.csv'
+    val_img_path = '/Volumes/Finkbeiner-Steve/work/data/npsad_data/vivek/Datasets/amyb_wsi/Parker-SemiSupervised/val.csv'
+
+   
+    train_dataset = WSIPathSSLDataset(train_img_path)
+    val_dataset = WSIPathSSLDataset(val_img_path)
+    train_dl = DataLoader(train_dataset, shuffle=True, batch_size=args.batch_size, num_workers=4, persistent_workers=True)
+    val_dl = DataLoader(val_dataset, shuffle=False, batch_size=args.batch_size, num_workers=4, persistent_workers=True)
     
     # ------------
     # model
@@ -494,14 +556,15 @@ def main():
                     num_patches=args.num_patches,
                     proj_dim=args.proj_dim)
 
+
     # ------------
     # training
     # ------------
     # Initializing wandb logger
     print("Initializing WandB Logger...")
     logger = WandbLogger(save_dir=args.logs,
-                         name=f'{args.name}',
-                         project="Prostate_Path_SSL"
+                        #  name=f'{args.name}',
+                         project="amyb-ssl"
     )
     # Defining Callbacks
     early_stop = EarlyStopping(
@@ -517,8 +580,8 @@ def main():
     else:
         gpu_num = [args.gpu_num]
         
-    trainer = pl.Trainer(accelerator="gpu",
-                         devices=gpu_num,
+    trainer = pl.Trainer(accelerator="mps",
+                         devices=args.gpu_num,
                          callbacks=[early_stop, checkpoint_callback],
                          default_root_dir=args.logs,
                          logger=logger,
