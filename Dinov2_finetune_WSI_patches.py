@@ -537,8 +537,8 @@ def main():
     # data
     # ------------
     print("Generating Training and Validation DataSets...")
-    train_img_path = '/workspace/train.csv'
-    val_img_path = '/Volumes/Finkbeiner-Steve/work/data/npsad_data/vivek/Datasets/amyb_wsi/Parker-SemiSupervised/val.csv'
+    train_img_path = '/workspace/Projects/semi-supervised-learning/train.csv'
+    val_img_path = '/workspace/Projects/semi-supervised-learning/val.csv'
 
    
     train_dataset = WSIPathSSLDataset(train_img_path)
