@@ -527,7 +527,7 @@ def main():
     parser.add_argument("--gpu_num", type=int, default=-1, help="GPU number to use.")
     parser.add_argument("--name", type=str, help="Name of experiment for logger.")
     parser.add_argument("--logs", type=Path, help="Path to model logs and checkpoints.")
-    parser.add_argument("--batch_size", type=int, default=64, help="Batch Size")
+    parser.add_argument("--batch_size", type=int, default=128, help="Batch Size")
     parser = DINOViT.add_model_specific_args(parser)
     args = parser.parse_args()
     dict_args = vars(args)
