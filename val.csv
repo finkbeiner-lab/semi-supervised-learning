@@ -157,7 +157,7 @@ Image Filename
 /workspace/test-patients/images/XE17-065_1_AmyB_1/x_18432_y_133120.png
 /workspace/test-patients/images/XE16-002_1_AmyB_1/x_65536_y_155648.png
 /workspace/test-patients/images/XE17-065_1_AmyB_1/x_19456_y_146432.png
-/workspace/train/train1/XE18-003_1_AmyB_1.json/images/XE18-003_1_AmyB_1_38952x_97762y_image.png
+/workspace/train/train1/XE18-003_1_AmyB_1/images/XE18-003_1_AmyB_1_38952x_97762y_image.png
 /workspace/test-patients/images/XE12-011_1_AmyB_1/x_26624_y_140288.png
 /workspace/test-patients/images/XE18-001_1_AmyB_1/x_23552_y_113664.png
 /workspace/test-patients/images/XE17-029_1_AmyB_1/x_60416_y_90112.png
@@ -651,7 +651,7 @@ Image Filename
 /workspace/test-patients/images/XE18-040_1_AmyB_1/x_37888_y_100352.png
 /workspace/test-patients/images/XE17-010_1_AmyB_1/x_27648_y_112640.png
 /workspace/test-patients/images/XE17-013_1_AmyB_1/x_22528_y_126976.png
-/workspace/train/train1/XE07-048_1_AmyB_1.json/images/XE07-048_1_AmyB_1_35995x_88896y_image.png
+/workspace/train/train1/XE07-048_1_AmyB_1/images/XE07-048_1_AmyB_1_35995x_88896y_image.png
 /workspace/test-patients/images/XE08-010_1_AmyB_1/x_64512_y_157696.png
 /workspace/test-patients/images/XE14-051_1_AmyB_1/x_50176_y_88064.png
 /workspace/test-patients/images/XE12-015_1_AmyB_1/x_14336_y_130048.png
@@ -824,7 +824,7 @@ Image Filename
 /workspace/test-patients/images/XE09-028_1_AmyB_1/x_40960_y_78848.png
 /workspace/test-patients/images/XE18-040_1_AmyB_1/x_66560_y_146432.png
 /workspace/test-patients/images/XE17-048_1_AmyB_1/x_34816_y_145408.png
-/workspace/train/train1/XE18-066_1_AmyB_1.json/images/XE18-066_1_AmyB_1_68615x_131958y_image.png
+/workspace/train/train1/XE18-066_1_AmyB_1/images/XE18-066_1_AmyB_1_68615x_131958y_image.png
 /workspace/test-patients/images/XE09-028_1_AmyB_1/x_17408_y_113664.png
 /workspace/test-patients/images/XE18-001_1_AmyB_1/x_82944_y_119808.png
 /workspace/test-patients/images/XE18-001_1_AmyB_1/x_25600_y_113664.png
@@ -1339,7 +1339,7 @@ Image Filename
 /workspace/test-patients/images/XE15-051_1_AmyB_1/x_48128_y_93184.png
 /workspace/test-patients/images/XE17-065_1_AmyB_1/x_12288_y_135168.png
 /workspace/test-patients/images/XE18-040_1_AmyB_1/x_59392_y_158720.png
-/workspace/train/train1/XE07-047_1_AmyB_1.json/images/XE07-047_1_AmyB_1_47293x_83966y_image.png
+/workspace/train/train1/XE07-047_1_AmyB_1/images/XE07-047_1_AmyB_1_47293x_83966y_image.png
 /workspace/test-patients/images/XE17-014_1_AmyB_1/x_78848_y_121856.png
 /workspace/test-patients/images/XE17-010_1_AmyB_1/x_15360_y_108544.png
 /workspace/test-patients/images/XE17-022_1_AmyB_1/x_54272_y_135168.png
@@ -1562,7 +1562,7 @@ Image Filename
 /workspace/test-patients/images/XE14-047_1_AmyB_1/x_30720_y_113664.png
 /workspace/test-patients/images/XE13-018_1_AmyB_1/x_19456_y_147456.png
 /workspace/test-patients/images/XE17-048_1_AmyB_1/x_17408_y_103424.png
-/workspace/train/train1/XE10-045_1_AmyB_1.json/images/XE10-045_1_AmyB_1_69655x_147253y_image.png
+/workspace/train/train1/XE10-045_1_AmyB_1/images/XE10-045_1_AmyB_1_69655x_147253y_image.png
 /workspace/test-patients/images/XE12-042_1_AmyB_1/x_32768_y_88064.png
 /workspace/test-patients/images/XE14-037_1_AmyB_1/x_27648_y_87040.png
 /workspace/test-patients/images/XE13-005_1_AmyB_1/x_73728_y_119808.png
@@ -1685,7 +1685,7 @@ Image Filename
 /workspace/test-patients/images/XE12-015_1_AmyB_1/x_76800_y_75776.png
 /workspace/test-patients/images/XE17-039_1_AmyB_1/x_33792_y_44032.png
 /workspace/test-patients/images/XE18-001_1_AmyB_1/x_29696_y_110592.png
-/workspace/train/train1/XE19-028_1_AmyB_1.json/images/XE19-028_1_AmyB_1_23552x_83874y_image.png
+/workspace/train/train1/XE19-028_1_AmyB_1/images/XE19-028_1_AmyB_1_23552x_83874y_image.png
 /workspace/test-patients/images/XE16-055_1_AmyB_1/x_52224_y_109568.png
 /workspace/test-patients/images/XE09-028_1_AmyB_1/x_72704_y_97280.png
 /workspace/test-patients/images/XE16-021_1_AmyB_1/x_38912_y_130048.png
@@ -2261,7 +2261,7 @@ Image Filename
 /workspace/test-patients/images/XE09-063_1_AmyB_1/x_71680_y_137216.png
 /workspace/test-patients/images/XE13-005_1_AmyB_1/x_10240_y_129024.png
 /workspace/test-patients/images/XE17-010_1_AmyB_1/x_40960_y_141312.png
-/workspace/train/train1/XE18-003_1_AmyB_1.json/images/XE18-003_1_AmyB_1_46120x_92642y_image.png
+/workspace/train/train1/XE18-003_1_AmyB_1/images/XE18-003_1_AmyB_1_46120x_92642y_image.png
 /workspace/test-patients/images/XE17-048_1_AmyB_1/x_4096_y_70656.png
 /workspace/test-patients/images/XE13-020_1_AmyB_1/x_54272_y_112640.png
 /workspace/test-patients/images/XE16-021_1_AmyB_1/x_41984_y_149504.png
@@ -2371,7 +2371,7 @@ Image Filename
 /workspace/test-patients/images/XE16-057_1_AmyB_1/x_39936_y_103424.png
 /workspace/test-patients/images/XE18-040_1_AmyB_1/x_70656_y_125952.png
 /workspace/test-patients/images/XE18-040_1_AmyB_1/x_58368_y_109568.png
-/workspace/train/train1/XE07-048_1_AmyB_1.json/images/XE07-048_1_AmyB_1_72859x_113472y_image.png
+/workspace/train/train1/XE07-048_1_AmyB_1/images/XE07-048_1_AmyB_1_72859x_113472y_image.png
 /workspace/test-patients/images/XE12-016_1_AmyB_1/x_23552_y_129024.png
 /workspace/test-patients/images/XE17-013_1_AmyB_1/x_13312_y_62464.png
 /workspace/test-patients/images/XE16-021_1_AmyB_1/x_55296_y_147456.png
@@ -3550,7 +3550,7 @@ Image Filename
 /workspace/test-patients/images/XE17-013_1_AmyB_1/x_75776_y_92160.png
 /workspace/test-patients/images/XE13-018_1_AmyB_1/x_54272_y_59392.png
 /workspace/test-patients/images/XE17-010_1_AmyB_1/x_37888_y_135168.png
-/workspace/train/train1/XE18-003_1_AmyB_1.json/images/XE18-003_1_AmyB_1_48168x_96738y_image.png
+/workspace/train/train1/XE18-003_1_AmyB_1/images/XE18-003_1_AmyB_1_48168x_96738y_image.png
 /workspace/test-patients/images/XE17-059_1_AmyB_1/x_5120_y_151552.png
 /workspace/test-patients/images/XE18-040_1_AmyB_1/x_72704_y_142336.png
 /workspace/test-patients/images/XE12-007_1_AmyB_1/x_20480_y_128000.png
@@ -3598,7 +3598,7 @@ Image Filename
 /workspace/test-patients/images/XE16-033_1_AmyB_1/x_67584_y_114688.png
 /workspace/test-patients/images/XE14-037_1_AmyB_1/x_46080_y_59392.png
 /workspace/test-patients/images/XE09-028_1_AmyB_1/x_35840_y_77824.png
-/workspace/train/train1/XE07-047_1_AmyB_1.json/images/XE07-047_1_AmyB_1_28861x_114686y_image.png
+/workspace/train/train1/XE07-047_1_AmyB_1/images/XE07-047_1_AmyB_1_28861x_114686y_image.png
 /workspace/test-patients/images/XE17-022_1_AmyB_1/x_47104_y_99328.png
 /workspace/test-patients/images/XE12-015_1_AmyB_1/x_29696_y_98304.png
 /workspace/test-patients/images/XE12-037_1_AmyB_1/x_10240_y_142336.png
@@ -3670,7 +3670,7 @@ Image Filename
 /workspace/test-patients/images/XE13-029_1_AmyB_1/x_51200_y_114688.png
 /workspace/test-patients/images/XE17-039_1_AmyB_1/x_20480_y_72704.png
 /workspace/test-patients/images/XE16-002_1_AmyB_1/x_52224_y_166912.png
-/workspace/train/train1/XE07-048_1_AmyB_1.json/images/XE07-048_1_AmyB_1_48283x_118592y_image.png
+/workspace/train/train1/XE07-048_1_AmyB_1/images/XE07-048_1_AmyB_1_48283x_118592y_image.png
 /workspace/test-patients/images/XE16-002_1_AmyB_1/x_50176_y_104448.png
 /workspace/test-patients/images/XE16-021_1_AmyB_1/x_53248_y_133120.png
 /workspace/test-patients/images/XE09-028_1_AmyB_1/x_73728_y_116736.png
@@ -3735,7 +3735,7 @@ Image Filename
 /workspace/test-patients/images/XE07-056_1_AmyB_1/x_36864_y_107520.png
 /workspace/test-patients/images/XE16-002_1_AmyB_1/x_22528_y_93184.png
 /workspace/test-patients/images/XE08-015_1_AmyB_1/x_53248_y_140288.png
-/workspace/train/train1/XE07-048_1_AmyB_1.json/images/XE07-048_1_AmyB_1_55451x_103232y_image.png
+/workspace/train/train1/XE07-048_1_AmyB_1/images/XE07-048_1_AmyB_1_55451x_103232y_image.png
 /workspace/test-patients/images/XE17-048_1_AmyB_1/x_63488_y_152576.png
 /workspace/test-patients/images/XE18-040_1_AmyB_1/x_44032_y_172032.png
 /workspace/test-patients/images/XE16-002_1_AmyB_1/x_0_y_110592.png
@@ -4026,7 +4026,7 @@ Image Filename
 /workspace/test-patients/images/XE09-028_1_AmyB_1/x_37888_y_86016.png
 /workspace/test-patients/images/XE12-042_1_AmyB_1/x_51200_y_82944.png
 /workspace/test-patients/images/XE10-005_1_AmyB_1/x_47104_y_124928.png
-/workspace/train/train1/XE07-048_1_AmyB_1.json/images/XE07-048_1_AmyB_1_48283x_82752y_image.png
+/workspace/train/train1/XE07-048_1_AmyB_1/images/XE07-048_1_AmyB_1_48283x_82752y_image.png
 /workspace/test-patients/images/XE18-004_1_AmyB_1/x_54272_y_83968.png
 /workspace/test-patients/images/XE17-048_1_AmyB_1/x_78848_y_94208.png
 /workspace/test-patients/images/XE12-011_1_AmyB_1/x_12288_y_107520.png
@@ -4410,7 +4410,7 @@ Image Filename
 /workspace/test-patients/images/XE10-005_1_AmyB_1/x_30720_y_76800.png
 /workspace/test-patients/images/XE12-007_1_AmyB_1/x_47104_y_150528.png
 /workspace/test-patients/images/XE13-029_1_AmyB_1/x_45056_y_89088.png
-/workspace/train/train1/XE07-048_1_AmyB_1.json/images/XE07-048_1_AmyB_1_59547x_137024y_image.png
+/workspace/train/train1/XE07-048_1_AmyB_1/images/XE07-048_1_AmyB_1_59547x_137024y_image.png
 /workspace/test-patients/images/XE17-059_1_AmyB_1/x_44032_y_103424.png
 /workspace/test-patients/images/XE17-010_1_AmyB_1/x_40960_y_130048.png
 /workspace/test-patients/images/XE18-040_1_AmyB_1/x_44032_y_94208.png
@@ -5154,7 +5154,7 @@ Image Filename
 /workspace/test-patients/images/XE10-046_1_AmyB_1/x_44032_y_141312.png
 /workspace/test-patients/images/XE12-015_1_AmyB_1/x_57344_y_120832.png
 /workspace/test-patients/images/XE07-056_1_AmyB_1/x_24576_y_61440.png
-/workspace/train/train1/XE07-047_1_AmyB_1.json/images/XE07-047_1_AmyB_1_20669x_105470y_image.png
+/workspace/train/train1/XE07-047_1_AmyB_1/images/XE07-047_1_AmyB_1_20669x_105470y_image.png
 /workspace/test-patients/images/XE18-040_1_AmyB_1/x_34816_y_157696.png
 /workspace/test-patients/images/XE18-001_1_AmyB_1/x_14336_y_139264.png
 /workspace/test-patients/images/XE14-037_1_AmyB_1/x_57344_y_96256.png
@@ -5239,7 +5239,7 @@ Image Filename
 /workspace/test-patients/images/XE12-007_1_AmyB_1/x_68608_y_159744.png
 /workspace/test-patients/images/XE12-011_1_AmyB_1/x_1024_y_115712.png
 /workspace/test-patients/images/XE08-047_1_AmyB_1/x_34816_y_105472.png
-/workspace/train/train1/XE19-028_1_AmyB_1.json/images/XE19-028_1_AmyB_1_15360x_71586y_image.png
+/workspace/train/train1/XE19-028_1_AmyB_1/images/XE19-028_1_AmyB_1_15360x_71586y_image.png
 /workspace/test-patients/images/XE17-039_1_AmyB_1/x_44032_y_58368.png
 /workspace/test-patients/images/XE17-013_1_AmyB_1/x_12288_y_59392.png
 /workspace/test-patients/images/XE10-033_1_AmyB_1/x_25600_y_66560.png
@@ -5346,7 +5346,7 @@ Image Filename
 /workspace/test-patients/images/XE17-010_1_AmyB_1/x_9216_y_75776.png
 /workspace/test-patients/images/XE12-007_1_AmyB_1/x_23552_y_92160.png
 /workspace/test-patients/images/XE18-040_1_AmyB_1/x_52224_y_178176.png
-/workspace/train/train1/XE18-066_1_AmyB_1.json/images/XE18-066_1_AmyB_1_49159x_116598y_image.png
+/workspace/train/train1/XE18-066_1_AmyB_1/images/XE18-066_1_AmyB_1_49159x_116598y_image.png
 /workspace/test-patients/images/XE12-011_1_AmyB_1/x_47104_y_117760.png
 /workspace/test-patients/images/XE09-049_1_AmyB_1/x_68608_y_132096.png
 /workspace/test-patients/images/XE07-056_1_AmyB_1/x_36864_y_142336.png
