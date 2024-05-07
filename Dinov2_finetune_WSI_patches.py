@@ -469,7 +469,7 @@ class DINOViT(pl.LightningModule):
         # Calculating the negative nuclear norm to asses representational collapse
         neg_nuclear_norm = self._calculate_nuc_norm(torch.vstack([student_out, teacher_out]))
         loss_dict = {'train_loss': loss, 'train_nuc_norm': neg_nuclear_norm}
-        self.log_dict(loss_dict, on_step=True, on_epoch=True)
+        self.log_dict(loss_dict, on_step=True, on_epoch=True, sync_dist=True)
         return loss
 
     def validation_step(self, batch, _):
@@ -486,7 +486,7 @@ class DINOViT(pl.LightningModule):
         # Calculating the negative nuclear norm to asses representational collapse
         neg_nuclear_norm = self._calculate_nuc_norm(torch.vstack([student_out, teacher_out]))
         loss_dict = {'val_loss': loss, 'val_nuc_norm': neg_nuclear_norm}
-        self.log_dict(loss_dict, on_step=True, on_epoch=True)
+        self.log_dict(loss_dict, on_step=True, on_epoch=True, sync_dist=True)
 
     def configure_optimizers(self):
         optimizer = optim.AdamW(self.parameters(), lr=self.lr)
