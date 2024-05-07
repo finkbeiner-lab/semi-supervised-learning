@@ -375,9 +375,9 @@ class DINOViT(pl.LightningModule):
         self.register_tokens = dinov2_model.register_tokens
         self.patch_embed = dinov2_model.patch_embed
         self.student_backbone = nn.Sequential(*dinov2_model.blocks)
-        self.student_head = DINOProjectionHead(768, 2048, 256, proj_dim, batch_norm=False)
+        self.student_head = DINOProjectionHead(768, 2048, 1369, proj_dim, batch_norm=False)
         self.teacher_backbone = copy.deepcopy(self.student_backbone)
-        self.teacher_head = DINOProjectionHead(768, 2048, 256, proj_dim, batch_norm=False)
+        self.teacher_head = DINOProjectionHead(768, 2048, 1369, proj_dim, batch_norm=False)
         # Making the teacher model require no
         for param in self.teacher_backbone.parameters():
             param.requires_grad = False
