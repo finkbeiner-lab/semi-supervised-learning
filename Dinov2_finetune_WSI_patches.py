@@ -111,7 +111,7 @@ class WSIPathSSLDataset(Dataset):
     def __init__(self, csv_file):
         self.img_files = pd.read_csv(csv_file)
         self.length = len(self.img_files)
-        self.resize_transform = transforms.Resize((518, 518), antialias=True)
+        self.resize_transform = transforms.Resize((224, 224), antialias=True)
         #518 x518
 
     def _random_transform(self, image):
@@ -363,7 +363,7 @@ class DINOViT(pl.LightningModule):
                  lr=1e-3,
                  max_epoch_number=500,
                  num_register_tokens=4,
-                 num_patches=1369, #1369   - [518/14 = 37 * 37 =1369]
+                 num_patches=256, #1369   - [518/14 = 37 * 37 =1369]
                  proj_dim=2048):
         super().__init__()
         self.lr = lr
@@ -375,9 +375,9 @@ class DINOViT(pl.LightningModule):
         self.register_tokens = dinov2_model.register_tokens
         self.patch_embed = dinov2_model.patch_embed
         self.student_backbone = nn.Sequential(*dinov2_model.blocks)
-        self.student_head = DINOProjectionHead(768, 2048, 1369, proj_dim, batch_norm=False)
+        self.student_head = DINOProjectionHead(768, 2048, 256, proj_dim, batch_norm=False)
         self.teacher_backbone = copy.deepcopy(self.student_backbone)
-        self.teacher_head = DINOProjectionHead(768, 2048, 1369, proj_dim, batch_norm=False)
+        self.teacher_head = DINOProjectionHead(768, 2048, 256, proj_dim, batch_norm=False)
         # Making the teacher model require no
         for param in self.teacher_backbone.parameters():
             param.requires_grad = False
@@ -568,7 +568,7 @@ def main():
     )
     # Defining Callbacks
     early_stop = EarlyStopping(
-        monitor="val_loss_epoch", min_delta=1e-5, patience=30, verbose=False, mode="min"
+        monitor="val_loss_epoch", min_delta=1e-5, patience=10, verbose=False, mode="min"
     )
     checkpoint_callback = ModelCheckpoint(
         monitor="train_loss", mode="min", save_last=True, every_n_train_steps=200, save_top_k=2,
