@@ -111,7 +111,7 @@ class WSIPathSSLDataset(Dataset):
     def __init__(self, csv_file):
         self.img_files = pd.read_csv(csv_file)
         self.length = len(self.img_files)
-        self.resize_transform = transforms.Resize((224, 224), antialias=True)
+        self.resize_transform = transforms.Resize((518, 518), antialias=True)
         #518 x518
 
     def _random_transform(self, image):
@@ -363,7 +363,7 @@ class DINOViT(pl.LightningModule):
                  lr=1e-3,
                  max_epoch_number=500,
                  num_register_tokens=4,
-                 num_patches=256, #1369   - [518/14 = 37 * 37 =1369]
+                 num_patches=1369, #1369   - [518/14 = 37 * 37 =1369]
                  proj_dim=2048):
         super().__init__()
         self.lr = lr
