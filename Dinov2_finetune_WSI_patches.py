@@ -490,7 +490,7 @@ class DINOViT(pl.LightningModule):
         parser.add_argument("--max_epoch_number", type=int, default=500, help="Maximum number of epochs.")
         parser.add_argument("--proj_dim", type=int, default=1024, help="The embedding dimension from the DINO head.")
         parser.add_argument("--num_register_tokens", type=int, default=4, help="Number of register tokens.")
-        parser.add_argument("--num_patches", type=int, default=256, help="The number of patch tokens for the ViT.")
+        parser.add_argument("--num_patches", type=int, default=1369, help="The number of patch tokens for the ViT.")
         return parent_parser
     
     def forward(self, X):
@@ -515,8 +515,11 @@ class DINOViT(pl.LightningModule):
         https://github.com/facebookresearch/dinov2/blob/main/dinov2/models/vision_transformer.py
         """
         B, nc, w, h = x.shape
-        pdb.set_trace()
+        print("Before, ", x.shape)
         x = self.patch_embed(x)
+        print("Patch embed, ", x.shape)
+
+
         x = x + self.pos_embed.repeat(B, 1, 1)
         if masks is not None:
             x = torch.where(masks.unsqueeze(-1), self.mask_token.to(x.dtype).unsqueeze(0), x)
