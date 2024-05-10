@@ -515,6 +515,7 @@ class DINOViT(pl.LightningModule):
         https://github.com/facebookresearch/dinov2/blob/main/dinov2/models/vision_transformer.py
         """
         B, nc, w, h = x.shape
+        pdb.set_trace()
         x = self.patch_embed(x)
         x = x + self.pos_embed.repeat(B, 1, 1)
         if masks is not None:
