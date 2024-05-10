@@ -642,8 +642,8 @@ def main():
    
     train_dataset = WSIPathSSLDataset(train_img_path)
     val_dataset = WSIPathSSLDataset(val_img_path)
-    train_dl = DataLoader(train_dataset, shuffle=True, batch_size=args.batch_size, num_workers=17, persistent_workers=False)
-    val_dl = DataLoader(val_dataset, shuffle=False, batch_size=args.batch_size, num_workers=17, persistent_workers=False)
+    train_dl = DataLoader(train_dataset, shuffle=True, batch_size=args.batch_size, num_workers=15, persistent_workers=False)
+    val_dl = DataLoader(val_dataset, shuffle=False, batch_size=args.batch_size, num_workers=15, persistent_workers=False)
     
     # ------------
     # model
