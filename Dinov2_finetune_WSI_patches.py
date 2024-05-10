@@ -9,7 +9,7 @@ from tqdm import tqdm
 import multiprocessing
 from skimage.io import imread
 import pdb
-from patch_embed import PatchEmbed
+from .patch_embed import PatchEmbed
 
 
 # importing torch related dependencies
