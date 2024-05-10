@@ -515,11 +515,8 @@ class DINOViT(pl.LightningModule):
         https://github.com/facebookresearch/dinov2/blob/main/dinov2/models/vision_transformer.py
         """
         B, nc, w, h = x.shape
-        print("Before, ", x.shape)
         x = self.patch_embed(x)
-        print("Patch embed, ", x.shape)
-
-
+    
         x = x + self.pos_embed.repeat(B, 1, 1)
         if masks is not None:
             x = torch.where(masks.unsqueeze(-1), self.mask_token.to(x.dtype).unsqueeze(0), x)
