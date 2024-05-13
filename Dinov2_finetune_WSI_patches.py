@@ -662,6 +662,7 @@ def main():
     # Initializing wandb logger
     print("Initializing WandB Logger...")
     logger = WandbLogger(save_dir=args.logs,
+                         name="auto",
                         #  name=f'{args.name}',
                          project="amyb-ssl"
     )
