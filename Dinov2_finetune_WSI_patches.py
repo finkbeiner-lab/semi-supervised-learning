@@ -471,7 +471,8 @@ class DINOViT(pl.LightningModule):
         self.register_tokens = dinov2_model.register_tokens
         # Custom Patch Embed
         self.patch_embed = PatchEmbed(img_size=518, patch_size=14)
-        self.patch_embed = dinov2_model.patch_embed
+        # self.patch_embed = dinov2_model.patch_embed
+
         self.student_backbone = nn.Sequential(*dinov2_model.blocks)
         self.student_head = DINOProjectionHead(768, 2048, 256, proj_dim, batch_norm=False)
         self.teacher_backbone = copy.deepcopy(self.student_backbone)
@@ -662,7 +663,6 @@ def main():
     # Initializing wandb logger
     print("Initializing WandB Logger...")
     logger = WandbLogger(save_dir=args.logs,
-                         name="auto",
                         #  name=f'{args.name}',
                          project="amyb-ssl"
     )

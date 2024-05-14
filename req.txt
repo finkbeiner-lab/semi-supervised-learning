@@ -1,0 +1,8 @@
+pandas
+lightly
+pytorch_lightning
+umap-learn
+seaborn
+scikit-image
+leidenalg
+faiss-gpu
